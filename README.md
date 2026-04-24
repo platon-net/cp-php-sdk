@@ -11,7 +11,13 @@ PHP 8.1 and later.
 
 ### Composer
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+The package is available on [Packagist](https://packagist.org/packages/platon-net/cp-php-sdk), so the recommended installation is:
+
+```bash
+composer require platon-net/cp-php-sdk
+```
+
+If you need to install directly from the Git repository during development, add the following to `composer.json`:
 
 ```json
 {
@@ -27,7 +33,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 }
 ```
 
-Then run `composer install`
+Then run `composer install`.
 
 ### Manual Installation
 
