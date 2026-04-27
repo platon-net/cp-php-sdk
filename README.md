@@ -11,13 +11,7 @@ PHP 8.1 and later.
 
 ### Composer
 
-The package is available on [Packagist](https://packagist.org/packages/platon-net/cp-php-sdk), so the recommended installation is:
-
-```bash
-composer require platon-net/cp-php-sdk
-```
-
-If you need to install directly from the Git repository during development, add the following to `composer.json`:
+To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
 
 ```json
 {
@@ -33,7 +27,7 @@ If you need to install directly from the Git repository during development, add 
 }
 ```
 
-Then run `composer install`.
+Then run `composer install`
 
 ### Manual Installation
 
@@ -58,20 +52,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = Platon\\ControlPanel\\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Platon\\ControlPanel\\Sdk\Api\DNSApi(
+$apiInstance = new Platon\\ControlPanel\\Sdk\Api\CartApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$domain = 'domain_example'; // string | Domain name
-$create_dns_record_request = new \Platon\\ControlPanel\\Sdk\Model\CreateDnsRecordRequest(); // \Platon\\ControlPanel\\Sdk\Model\CreateDnsRecordRequest | DNS record payload
+$check_cart_coupon_request = new \Platon\\ControlPanel\\Sdk\Model\CheckCartCouponRequest(); // \Platon\\ControlPanel\\Sdk\Model\CheckCartCouponRequest | Cart coupon check payload
 
 try {
-    $result = $apiInstance->createDnsRecord($domain, $create_dns_record_request);
+    $result = $apiInstance->checkCartCoupon($check_cart_coupon_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DNSApi->createDnsRecord: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling CartApi->checkCartCoupon: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -82,6 +75,15 @@ All URIs are relative to *https://setup.platon.sk/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CartApi* | [**checkCartCoupon**](docs/Api/CartApi.md#checkcartcoupon) | **POST** /cart/coupons/check | Check and apply cart coupon
+*CartApi* | [**createCartItem**](docs/Api/CartApi.md#createcartitem) | **POST** /cart/items | Add item to cart
+*CartApi* | [**deleteCartItem**](docs/Api/CartApi.md#deletecartitem) | **DELETE** /cart/items/{cartItemId} | Remove item from cart
+*CartApi* | [**getCartBillingAddress**](docs/Api/CartApi.md#getcartbillingaddress) | **GET** /cart/billing-address | Get cart billing address
+*CartApi* | [**getCartCoupon**](docs/Api/CartApi.md#getcartcoupon) | **GET** /cart/coupons/current | Get current cart coupon
+*CartApi* | [**getCartTotal**](docs/Api/CartApi.md#getcarttotal) | **GET** /cart/total | Get cart total
+*CartApi* | [**listCartItems**](docs/Api/CartApi.md#listcartitems) | **GET** /cart/items | List cart items
+*CartApi* | [**updateCartItem**](docs/Api/CartApi.md#updatecartitem) | **PATCH** /cart/items/{cartItemId} | Update cart item data
+*CartApi* | [**updateCartItemCount**](docs/Api/CartApi.md#updatecartitemcount) | **PATCH** /cart/items/by-product/count | Update cart item count by product and domain
 *DNSApi* | [**createDnsRecord**](docs/Api/DNSApi.md#creatednsrecord) | **POST** /dns/{domain}/records | Create DNS record
 *DNSApi* | [**deleteDnsRecord**](docs/Api/DNSApi.md#deletednsrecord) | **DELETE** /dns/{domain}/records/{recordId} | Delete DNS record
 *DNSApi* | [**getDnsRecords**](docs/Api/DNSApi.md#getdnsrecords) | **GET** /dns/{domain}/records | Get DNS records by domain
@@ -118,6 +120,8 @@ Class | Method | HTTP request | Description
 
 - [ChangeDomainNameserversRequest](docs/Model/ChangeDomainNameserversRequest.md)
 - [ChangeMailboxPasswordRequest](docs/Model/ChangeMailboxPasswordRequest.md)
+- [CheckCartCouponRequest](docs/Model/CheckCartCouponRequest.md)
+- [CreateCartItemRequest](docs/Model/CreateCartItemRequest.md)
 - [CreateDnsRecord200Response](docs/Model/CreateDnsRecord200Response.md)
 - [CreateDnsRecordRequest](docs/Model/CreateDnsRecordRequest.md)
 - [CreateMailboxRequest](docs/Model/CreateMailboxRequest.md)
@@ -148,6 +152,9 @@ Class | Method | HTTP request | Description
 - [SetPreferredVehicleRequest](docs/Model/SetPreferredVehicleRequest.md)
 - [Time200Response](docs/Model/Time200Response.md)
 - [Time200ResponseData](docs/Model/Time200ResponseData.md)
+- [UpdateCartItemCountRequest](docs/Model/UpdateCartItemCountRequest.md)
+- [UpdateCartItemRequest](docs/Model/UpdateCartItemRequest.md)
+- [UpdateCartItemRequestData](docs/Model/UpdateCartItemRequestData.md)
 - [UpdateDnsRecordRequest](docs/Model/UpdateDnsRecordRequest.md)
 - [VerifyOauthRequest200Response](docs/Model/VerifyOauthRequest200Response.md)
 - [VerifyOauthRequest200ResponseData](docs/Model/VerifyOauthRequest200ResponseData.md)
