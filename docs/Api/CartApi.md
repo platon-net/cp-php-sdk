@@ -13,6 +13,7 @@ All URIs are relative to https://setup.platon.sk/api, except if the operation de
 | [**getCartCoupon()**](CartApi.md#getCartCoupon) | **GET** /cart/coupons/current | Get current cart coupon |
 | [**getCartTotal()**](CartApi.md#getCartTotal) | **GET** /cart/total | Get cart total |
 | [**listCartItems()**](CartApi.md#listCartItems) | **GET** /cart/items | List cart items |
+| [**mergeCartItems()**](CartApi.md#mergeCartItems) | **POST** /cart/items/merge | Merge anonymous cart items into current customer cart |
 | [**updateCartItem()**](CartApi.md#updateCartItem) | **PATCH** /cart/items/{cartItemId} | Update cart item data |
 | [**updateCartItemCount()**](CartApi.md#updateCartItemCount) | **PATCH** /cart/items/by-product/count | Update cart item count by product and domain |
 
@@ -421,6 +422,64 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `mergeCartItems()`
+
+```php
+mergeCartItems($merge_cart_items_request): \Platon\\ControlPanel\\Sdk\Model\MergeCartItems200Response
+```
+
+Merge anonymous cart items into current customer cart
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearerAuth
+$config = Platon\\ControlPanel\\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Platon\\ControlPanel\\Sdk\Api\CartApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merge_cart_items_request = new \Platon\\ControlPanel\\Sdk\Model\MergeCartItemsRequest(); // \Platon\\ControlPanel\\Sdk\Model\MergeCartItemsRequest | Anonymous cart merge payload
+
+try {
+    $result = $apiInstance->mergeCartItems($merge_cart_items_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CartApi->mergeCartItems: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merge_cart_items_request** | [**\Platon\\ControlPanel\\Sdk\Model\MergeCartItemsRequest**](../Model/MergeCartItemsRequest.md)| Anonymous cart merge payload | |
+
+### Return type
+
+[**\Platon\\ControlPanel\\Sdk\Model\MergeCartItems200Response**](../Model/MergeCartItems200Response.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
