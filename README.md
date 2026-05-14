@@ -54,18 +54,23 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
+// Configure Bearer authorization: bearerAuth
+$config = Platon\\ControlPanel\\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Platon\\ControlPanel\\Sdk\Api\AuthApi(
+
+$apiInstance = new Platon\\ControlPanel\\Sdk\Api\AntispamApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
+$add_antispam_maildata_request = new \Platon\\ControlPanel\\Sdk\Model\AddAntispamMaildataRequest(); // \Platon\\ControlPanel\\Sdk\Model\AddAntispamMaildataRequest | Maildata payload
 
 try {
-    $result = $apiInstance->createAuthToken();
+    $result = $apiInstance->addAntispamMaildata($add_antispam_maildata_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AuthApi->createAuthToken: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AntispamApi->addAntispamMaildata: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -86,6 +91,9 @@ All URIs are relative to *https://setup.platon.sk/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AntispamApi* | [**addAntispamMaildata**](docs/Api/AntispamApi.md#addantispammaildata) | **POST** /antispam/maildata | Add maildata to antispam engine
+*AntispamApi* | [**checkAntispamMaildataRules**](docs/Api/AntispamApi.md#checkantispammaildatarules) | **POST** /antispam/maildata/check | Check maildata against existing antispam rules
+*AntispamApi* | [**createAntispamEmailRule**](docs/Api/AntispamApi.md#createantispamemailrule) | **POST** /antispam/rules | Create antispam email rule or increment existing rule hitcount
 *AuthApi* | [**createAuthToken**](docs/Api/AuthApi.md#createauthtoken) | **POST** /auth/token | Create anonymous auth token
 *CartApi* | [**checkCartCoupon**](docs/Api/CartApi.md#checkcartcoupon) | **POST** /cart/coupons/check | Check and apply cart coupon
 *CartApi* | [**createCartItem**](docs/Api/CartApi.md#createcartitem) | **POST** /cart/items | Add item to cart
@@ -133,9 +141,12 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [AddAntispamMaildataRequest](docs/Model/AddAntispamMaildataRequest.md)
 - [ChangeDomainNameserversRequest](docs/Model/ChangeDomainNameserversRequest.md)
 - [ChangeMailboxPasswordRequest](docs/Model/ChangeMailboxPasswordRequest.md)
+- [CheckAntispamMaildataRulesRequest](docs/Model/CheckAntispamMaildataRulesRequest.md)
 - [CheckCartCouponRequest](docs/Model/CheckCartCouponRequest.md)
+- [CreateAntispamEmailRuleRequest](docs/Model/CreateAntispamEmailRuleRequest.md)
 - [CreateAuthToken200Response](docs/Model/CreateAuthToken200Response.md)
 - [CreateAuthToken200ResponseData](docs/Model/CreateAuthToken200ResponseData.md)
 - [CreateCartItemRequest](docs/Model/CreateCartItemRequest.md)
